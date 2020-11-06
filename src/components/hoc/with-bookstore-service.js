@@ -1,22 +1,20 @@
 import React from 'react';
-import { BookstoreServiceConsimer } from '../bookstore-service-context';
+import { BookstoreServiceConsumer } from '../bookstore-service-context';
 
 const withBookstoreService = () => (Wrapped) => {
 
-    return (props) => {
-       return (
-        <BookstoreServiceConsimer>
-            {
-                (bookstoreService) => {
-                    return ( 
-                    <Wrapped { ...props }
-                    bookstoreService={bookstoreService} />
-                    )
-                }
-            }
-        </BookstoreServiceConsimer>
-       );
-    }
+  return (props) => {
+    return (
+      <BookstoreServiceConsumer>
+        {
+          (bookstoreService) => {
+            return (<Wrapped {...props}
+                     bookstoreService={bookstoreService}/>);
+          }
+        }
+      </BookstoreServiceConsumer>
+    );
+  }
 };
 
 export default withBookstoreService;

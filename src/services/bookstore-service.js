@@ -1,5 +1,9 @@
-export default class BooksstoreService{
-    getbooks(){
-        return [];
+export default class BookstoreService {
+
+    getBooks() {
+      return [
+          {id: 1, name: 'fdsfs'}
+      ];
     }
-}
+  
+  }
