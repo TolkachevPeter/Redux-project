@@ -1,6 +1,6 @@
 
 const initialState = {
-    books: []
+    books: [ ]
 };
 
 const reducer = (state = initialState, action) => {
