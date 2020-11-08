@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 const BookListItem = ({ book }) => {
   const { title, author, price, coverImage } = book;
