@@ -6,6 +6,7 @@ import './app.css';
 
 const App = () => {
     return (
+        <main role='main' className='container'>
     <Switch>
         < Route path='/' 
         component={HomePage}
@@ -15,6 +16,7 @@ const App = () => {
         component={CartPage}
         exact />
     </Switch>
+    </main>
     )
 };
 
