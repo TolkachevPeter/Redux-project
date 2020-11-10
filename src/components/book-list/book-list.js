@@ -44,10 +44,16 @@ const mapStateToProps = ({ books, loading, error }) => {
   return { books, loading, error };
 };
 
-const mapDispatchToProps = {
-  booksLoaded,
-  booksRequested,
-  booksError
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { bookstoreService } = ownProps;
+  return {
+    fetchBooks: () => {
+    dispatch(booksRequested());
+    bookstoreService.getBooks()
+      .then((data) => dispatch(booksLoaded(data)))
+      .catch((err) => dispatch(booksError(err)));
+    }
+  }
 };
 
 export default compose(
