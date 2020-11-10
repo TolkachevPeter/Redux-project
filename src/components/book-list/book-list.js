@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { withBookstoreService } from '../hoc';
 import { booksLoaded, booksRequested, booksError } from '../../actions';
+import ErrorIndicator from '../error-indicator';
 import { compose } from '../../utils';
 import Spinner from '../spinner';
 import './book-list.css';
