@@ -24,10 +24,14 @@ class BookList extends Component {
   }
 
   render() {
-    const { books, loading } = this.props;
+    const { books, loading, error} = this.props;
 
     if (loading) {
       return <Spinner />;
+    }
+
+    if (error) {
+      return <ErrorIndicator />;
     }
 
     return (
