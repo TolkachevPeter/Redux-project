@@ -62,4 +62,25 @@ const ShoppingCartTable = ({
   );
 };
 
+const mapStateToProps = ({cartItems, orderTotal}) => {
+  return {
+    items: cartItems,
+    total: orderTotal
+  };
+};
+
+const mapDispachToProps = () => {
+  return {
+    onIncrease: (id) => {
+      console.log('fdsfd');
+    },
+    onDecrease: (id) => {
+      console.log('fdsfd');
+    },
+    onDelete: (id) => {
+      console.log('fdsfd');
+    },
+  }
+}
+
 export default ShoppingCartTable;
