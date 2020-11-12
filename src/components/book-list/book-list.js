@@ -3,7 +3,7 @@ import BookListItem from '../book-list-item';
 import { connect } from 'react-redux';
 
 import { withBookstoreService } from '../hoc';
-import { fetchBooks } from '../../actions';
+import { fetchBooks, bookAddedToCart } from '../../actions';
 import ErrorIndicator from '../error-indicator';
 import { compose } from '../../utils';
 import Spinner from '../spinner';
@@ -33,7 +33,7 @@ this.props.fetchBooks();
   }
 
   render() {
-    const { books, loading, error} = this.props;
+    const { books, loading, error, onAddedToCart} = this.props;
 
     if (loading) {
       return <Spinner />;
@@ -43,7 +43,7 @@ this.props.fetchBooks();
       return <ErrorIndicator />;
     }
 
-    return <BookList books={books} />
+    return <BookList books={books}  onAddedToCart={onAddedToCart}/>
   }
 }
 
@@ -56,7 +56,7 @@ const mapDispatchToProps = (dispatch, { bookstoreService }) => {
   return {
     fetchBooks: fetchBooks(bookstoreService, dispatch),
     onAddedToCart: (id) => {
-      console.log('added to cart', id);
+      dispatch(bookAddedToCart(id))
     }
   }
 };
