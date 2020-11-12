@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './shopping-cart-table.css';
 
 const ShoppingCartTable = ({
@@ -12,13 +13,13 @@ const ShoppingCartTable = ({
     const {id, name, count, total} = item;
     return(
       <tr key={id}>
-              <td>{idx}</td>
+              <td>{idx + 1}</td>
               <td>{name}</td>
               <td>{count}</td>
               <td>${total}</td>
               <td>
                 <button
-                onClick={() => onDecrease(id)} 
+                onClick={() => onDelete(id)} 
                  className="btn btn-outline-danger btn-sm float-right">
                   <i className="fa fa-trash-o" />
                 </button>
@@ -28,7 +29,7 @@ const ShoppingCartTable = ({
                   <i className="fa fa-plus-circle" />
                 </button>
                 <button 
-                onClick={() => onDelete(id)} 
+                onClick={() => onDecrease(id)} 
                 className="btn btn-outline-warning btn-sm float-right">
                   <i className="fa fa-minus-circle" />
                 </button>
@@ -83,4 +84,4 @@ const mapDispachToProps = () => {
   }
 }
 
-export default ShoppingCartTable;
+export default connect(mapStateToProps, mapDispachToProps)(ShoppingCartTable);
