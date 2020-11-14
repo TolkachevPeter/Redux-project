@@ -1,7 +1,9 @@
-import { bool } from "prop-types";
+import {
+    bool
+} from "prop-types";
 
 const initialState = {
-    books: [ ],
+    books: [],
     loading: true,
     error: null,
     cartItems: [],
@@ -9,7 +11,7 @@ const initialState = {
 };
 
 const updateCartItems = (cartItems, item, idx) => {
-   
+
     if (idx === -1) {
         return [
             ...cartItems,
@@ -22,79 +24,68 @@ const updateCartItems = (cartItems, item, idx) => {
         item,
         ...cartItems.slice(idx + 1)
     ];
-} 
+}
+
+const updateCartItem = (book, item) => {
+    if (item) {
+        return {
+            ...item,
+            count: item.count + 1,
+            total: item.total + book.price
+    };
+    } else {
+        return {
+            id: book.id,
+            title: book.title,
+            count: 1,
+            total: book.price
+    };
+    } 
+}
 
 const reducer = (state = initialState, action) => {
 
 
-    switch(action.type) {
+    switch (action.type) {
         case 'FETCH_BOOKS_REQUESTED':
             return {
-            ...state,
-            books: [],
-            loading: true,
-            error: null
+                ...state,
+                books: [],
+                    loading: true,
+                    error: null
             };
         case 'FETCH_BOOKS_SUCCESS':
             return {
                 ...state,
                 books: action.payload,
-                loading: false,
-                error: null
+                    loading: false,
+                    error: null
             };
 
         case 'FETCH_BOOKS_FAILURE':
             return {
                 ...state,
                 books: [],
-                loading: false,
-                error: action.payload
+                    loading: false,
+                    error: action.payload
             };
 
-        case 'BOOK_ADDED_TO_CART': 
+        case 'BOOK_ADDED_TO_CART':
             const bookId = action.payload;
             const book = state.books.find((book) => book.id === bookId);
 
-            const itemIndex = state.cartItems.findIndex(({id}) => id === bookId);
+            const itemIndex = state.cartItems.findIndex(({
+                id
+            }) => id === bookId);
             const item = state.cartItems[itemIndex];
-            
-            let newItem;
-            if (item) {
-                newItem = {
-                    ...item,
-                    count: item.count + 1,
-                    total: item.total + book.price
-            };
-            } else {
-                newItem = {
-                    id: book.id,
-                    title: book.title,
-                    count: 1,
-                    total: book.price
-            };
-            }
 
-            if (itemIndex < 0 ) {
-                return{
-                    ...state,
-                    cartItems: [
-                        ...state.cartItems,
-                        newItem
-                    ]
-                }
-            } else {
-                return{
-                    ...state,
-                    cartItems: [
-                        ...state.cartItems.slice(0, itemIndex),
-                        newItem,
-                        ...state.cartItems.slice(itemIndex + 1),
-                    ]
-                }
-            }
+            return {
+                ...state,
+                cartItems: updateCartItems(state.cartItems, item, itemIndex)
+            };
 
-            default:
-                return state;
+        default:
+            return state;
     }
 }
 
