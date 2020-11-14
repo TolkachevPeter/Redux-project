@@ -41,12 +41,22 @@ const reducer = (state = initialState, action) => {
 
             const itemIndex = state.cartItems.findIndex(({id}) => id === bookId);
             const item = state.cartItems[itemIndex];
-            const newItem = {
+            
+            let newItem;
+            if (item) {
+                newItem = {
+                    ...item,
+                    count: item.count + 1,
+                    total: book.price
+            };
+            } else {
+                newItem = {
                     id: book.id,
                     title: book.title,
                     count: 1,
                     total: book.price
             };
+            }
             return{
                 ...state,
                 cartItems: [
