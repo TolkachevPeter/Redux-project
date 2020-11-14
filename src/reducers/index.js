@@ -26,21 +26,22 @@ const updateCartItems = (cartItems, item, idx) => {
     ];
 }
 
-const updateCartItem = (book, item) => {
-    if (item) {
-        return {
-            ...item,
-            count: item.count + 1,
-            total: item.total + book.price
-    };
-    } else {
-        return {
-            id: book.id,
-            title: book.title,
-            count: 1,
-            total: book.price
-    };
-    } 
+const updateCartItem = (book, item = {}) => {
+
+    const { 
+        id = book.id, 
+        count = 0, 
+        title = book.title, 
+        total = 0 
+    } = item;
+
+    return {
+        id,
+        title,
+        count: count + 1,
+        total: total + book.price
+
+    }
 }
 
 const reducer = (state = initialState, action) => {
@@ -79,9 +80,10 @@ const reducer = (state = initialState, action) => {
             }) => id === bookId);
             const item = state.cartItems[itemIndex];
 
+            const newItem = updateCartItem(book, item);
             return {
                 ...state,
-                cartItems: updateCartItems(state.cartItems, item, itemIndex)
+                cartItems: updateCartItems(state.cartItems, newItem, itemIndex)
             };
 
         default:
