@@ -38,8 +38,11 @@ const reducer = (state = initialState, action) => {
         case 'BOOK_ADDED_TO_CART': 
             const bookId = action.payload;
             const book = state.books.find((book) => book.id === bookId);
+
+            const itemIndex = state.cartItems.findIndex(({id}) => id === bookId);
+            const item = state.cartItems[itemIndex];
             const newItem = {
-                    id: bookId,
+                    id: book.id,
                     title: book.title,
                     count: 1,
                     total: book.price
