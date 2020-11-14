@@ -47,7 +47,7 @@ const reducer = (state = initialState, action) => {
                 newItem = {
                     ...item,
                     count: item.count + 1,
-                    total: book.price
+                    total: item.total + book.price
             };
             } else {
                 newItem = {
@@ -57,12 +57,24 @@ const reducer = (state = initialState, action) => {
                     total: book.price
             };
             }
-            return{
-                ...state,
-                cartItems: [
-                    ...state.cartItems,
-                    newItem
-                ]
+
+            if (itemIndex < 0 ) {
+                return{
+                    ...state,
+                    cartItems: [
+                        ...state.cartItems,
+                        newItem
+                    ]
+                }
+            } else {
+                return{
+                    ...state,
+                    cartItems: [
+                        ...state.cartItems.slice(0, itemIndex),
+                        newItem,
+                        ...state.cartItems.slice(itemIndex + 1),
+                    ]
+                }
             }
 
             default:
