@@ -8,6 +8,22 @@ const initialState = {
     orderTotal: 222
 };
 
+const updateCartItems = (cartItems, item, idx) => {
+   
+    if (idx === -1) {
+        return [
+            ...cartItems,
+            item
+        ];
+    };
+
+    return [
+        ...cartItems.slice(0, idx),
+        item,
+        ...cartItems.slice(idx + 1)
+    ];
+} 
+
 const reducer = (state = initialState, action) => {
 
 
