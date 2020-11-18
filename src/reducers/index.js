@@ -124,7 +124,18 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 bookList: updateBookList(state, action)
-            }
+            };
+        
+        case 'BOOK_ADDED_TO_CART':
+        case 'BOOK_REMOVED_FROM_CART':
+        case 'ALL_BOOKS_REMOVED_FROM_CART':
+            return {
+                ...state,
+                shoppingCart: updateShoppingCart(state, action)
+            };
+
+        default:
+            return state;
     }
 }
 
