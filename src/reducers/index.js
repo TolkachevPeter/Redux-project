@@ -3,11 +3,16 @@ import {
 } from "prop-types";
 
 const initialState = {
-    books: [],
-    loading: true,
-    error: null,
-    cartItems: [],
-    orderTotal: 222
+    bookList: {
+        books: [],
+        loading: true,
+        error: null,
+    },
+
+    shoppingCart: {
+        cartItems: [],
+        orderTotal: 0
+    }
 };
 
 const updateCartItems = (cartItems, item, idx) => {
@@ -68,20 +73,17 @@ const updateOrder = (state, bookId, quantity) => {
     };
 }
 
-const reducer = (state = initialState, action) => {
-
-
-    switch (action.type) {
+const updateBookList = (state, action) => {
+  
+    switch(action.type) {
         case 'FETCH_BOOKS_REQUESTED':
             return {
-                ...state,
                 books: [],
                     loading: true,
                     error: null
             };
         case 'FETCH_BOOKS_SUCCESS':
             return {
-                ...state,
                 books: action.payload,
                     loading: false,
                     error: null
@@ -89,11 +91,21 @@ const reducer = (state = initialState, action) => {
 
         case 'FETCH_BOOKS_FAILURE':
             return {
-                ...state,
                 books: [],
                     loading: false,
                     error: action.payload
             };
+    }
+};
+const updateShoppingCart = (state, action) => {
+
+}
+
+const reducer = (state = initialState, action) => {
+
+
+    switch (action.type) {
+        
 
         case 'BOOK_ADDED_TO_CART':
             return updateOrder(state, action.payload, 1);
