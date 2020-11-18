@@ -95,6 +95,9 @@ const updateBookList = (state, action) => {
                     loading: false,
                     error: action.payload
             };
+
+        default:
+            return state.bookList;
     }
 };
 const updateShoppingCart = (state, action) => {
@@ -108,8 +111,11 @@ const updateShoppingCart = (state, action) => {
             return updateOrder(state, action.payload, -1);
 
         case 'ALL_BOOKS_REMOVED_FROM_CART':
-            const item = state.cartItems.find(({id}) => id === action.payload);
+            const item = state.shoppingCart.cartItems.find(({id}) => id === action.payload);
             return updateOrder(state, action.payload, -item.count);
+
+        default:
+            return state.shoppingCart;
 
     }
 }
