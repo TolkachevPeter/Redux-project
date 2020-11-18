@@ -1,19 +1,4 @@
-import {
-    bool
-} from "prop-types";
 
-const initialState = {
-    bookList: {
-        books: [],
-        loading: true,
-        error: null,
-    },
-
-    shoppingCart: {
-        cartItems: [],
-        orderTotal: 0
-    }
-};
 
 const updateCartItems = (cartItems, item, idx) => {
 
@@ -73,34 +58,15 @@ const updateOrder = (state, bookId, quantity) => {
     };
 }
 
-const updateBookList = (state, action) => {
-  
-    switch(action.type) {
-        case 'FETCH_BOOKS_REQUESTED':
-            return {
-                books: [],
-                    loading: true,
-                    error: null
-            };
-        case 'FETCH_BOOKS_SUCCESS':
-            return {
-                books: action.payload,
-                    loading: false,
-                    error: null
-            };
 
-        case 'FETCH_BOOKS_FAILURE':
-            return {
-                books: [],
-                    loading: false,
-                    error: action.payload
-            };
-
-        default:
-            return state.bookList;
-    }
-};
 const updateShoppingCart = (state, action) => {
+
+    if(state ===  undefined) {
+        return {
+            cartItems: [],
+            orderTotal: 0
+        }
+    }
 
     switch(action.type) {
         
@@ -120,28 +86,11 @@ const updateShoppingCart = (state, action) => {
     }
 }
 
-const reducer = (state = initialState, action) => {
+const reducer = (state, action) => {
 
-
-    switch (action.type) {
-        case 'FETCH_BOOKS_REQUESTED':
-        case 'FETCH_BOOKS_SUCCESS':
-        case 'FETCH_BOOKS_FAILURE':
-            return {
-                ...state,
-                bookList: updateBookList(state, action)
-            };
-        
-        case 'BOOK_ADDED_TO_CART':
-        case 'BOOK_REMOVED_FROM_CART':
-        case 'ALL_BOOKS_REMOVED_FROM_CART':
-            return {
-                ...state,
-                shoppingCart: updateShoppingCart(state, action)
-            };
-
-        default:
-            return state;
+    return{
+        bookList: updateBookList(state, action),
+        shoppingCart: updateShoppingCart(state, action)
     }
 }
 
