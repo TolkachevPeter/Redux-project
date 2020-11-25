@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/TolkachevPeter/Redux-project/static/css/main.9a410b61.chunk.css",
+    "main.js": "/TolkachevPeter/Redux-project/static/js/main.057eca66.chunk.js",
+    "main.js.map": "/TolkachevPeter/Redux-project/static/js/main.057eca66.chunk.js.map",
+    "runtime-main.js": "/TolkachevPeter/Redux-project/static/js/runtime-main.0697c0b0.js",
+    "runtime-main.js.map": "/TolkachevPeter/Redux-project/static/js/runtime-main.0697c0b0.js.map",
+    "static/js/2.aa5f393b.chunk.js": "/TolkachevPeter/Redux-project/static/js/2.aa5f393b.chunk.js",
+    "static/js/2.aa5f393b.chunk.js.map": "/TolkachevPeter/Redux-project/static/js/2.aa5f393b.chunk.js.map",
+    "index.html": "/TolkachevPeter/Redux-project/index.html",
+    "precache-manifest.8f40cf5dbb6b52d2953cc3889fedb4ac.js": "/TolkachevPeter/Redux-project/precache-manifest.8f40cf5dbb6b52d2953cc3889fedb4ac.js",
+    "service-worker.js": "/TolkachevPeter/Redux-project/service-worker.js",
+    "static/css/main.9a410b61.chunk.css.map": "/TolkachevPeter/Redux-project/static/css/main.9a410b61.chunk.css.map",
+    "static/js/2.aa5f393b.chunk.js.LICENSE.txt": "/TolkachevPeter/Redux-project/static/js/2.aa5f393b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0697c0b0.js",
+    "static/js/2.aa5f393b.chunk.js",
+    "static/css/main.9a410b61.chunk.css",
+    "static/js/main.057eca66.chunk.js"
+  ]
+}
