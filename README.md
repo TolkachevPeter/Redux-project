@@ -13,7 +13,7 @@ Action Creator,
 и т.д.
  
  
-##Демо
+## Демо
 https://www.redux.tolkachev.site/
  
 Осталось исправить пару багов - скоро исправлю :)
